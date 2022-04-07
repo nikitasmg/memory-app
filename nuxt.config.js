@@ -46,5 +46,6 @@ export default {
       },
     },
   },
-  srcDir: 'src/'
+  srcDir: 'src/',
+  target: 'static' // default is 'server'
 }
