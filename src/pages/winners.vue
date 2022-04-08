@@ -16,7 +16,7 @@
     </div>
     <my-button
     class="btn"
-    @clickBtn="startNewGame"
+    @click="startNewGame"
     >
       Играть еще
     </my-button>

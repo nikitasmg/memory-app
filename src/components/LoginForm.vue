@@ -1,18 +1,18 @@
 <template>
   <form @submit.prevent="setName">
-      <label class="label" for="name">Войти в игру</label>
-      <my-input
-        id="name"
-        type="text"
-        v-model="username"
-        :placeholder="placeholder"
-        required
-      />
-      <my-button
-        type="submit"
-      >
-        Начать
-      </my-button>
+    <label class="label" for="name">Войти в игру</label>
+    <my-input
+      id="name"
+      type="text"
+      v-model="username"
+      :placeholder="placeholder"
+      required
+    />
+    <my-button
+      type="submit"
+    >
+      Начать
+    </my-button>
   </form>
 </template>
 
@@ -25,12 +25,11 @@ export default {
     MyInput,
     MyButton
   },
-  props: {
-  },
+  props: {},
   data() {
     return {
       placeholder: 'Введите имя',
-      username:'',
+      username: '',
     }
   },
   methods: {
@@ -46,6 +45,7 @@ export default {
 
 <style scoped lang="scss">
 @import "src/assets/css/variables";
+
 form {
   display: flex;
   flex-direction: column;
@@ -57,6 +57,7 @@ form {
   width: 50%;
   padding: 25px 50px;
   background-color: $white;
+  border-radius: 10px;
 
   @media (max-width: 700px) {
     width: 100%;

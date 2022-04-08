@@ -6,13 +6,13 @@
       <card
         v-for="card in cards"
         :key="card.id"
-        @getItem="game(card)"
+        @click="game(card)"
         :card="card"
       />
     </div>
     <my-button
       class="btn__exit"
-      @clickBtn="exit"
+      @click="exit"
     >
       Выйти и завершить
     </my-button>
@@ -20,9 +20,11 @@
 </template>
 
 <script>
-import Card from "@/components/UI/Card";
+import Card from "@/components/UI/Card"
 import _isEqual from 'lodash/isEqual'
-import MyButton from "@/components/UI/MyButton";
+
+const _ = require("lodash");
+import MyButton from "@/components/UI/MyButton"
 
 export default {
   components: {MyButton, Card},
@@ -30,16 +32,22 @@ export default {
     return {
       username: '',
       cards: [
-        {id: 1, face: "ace", isActive: false, isVisible: true,},
-        {id: 3, face: "king", isActive: false, isVisible: true,},
-        {id: 4, face: "ten", isActive: false, isVisible: true,},
-        {id: 5, face: "dama", isActive: false, isVisible: true,},
-        {id: 6, face: "ace", isActive: false, isVisible: true,},
-        {id: 7, face: "valet", isActive: false, isVisible: true,},
-        {id: 8, face: "king", isActive: false, isVisible: true,},
-        {id: 9, face: "dama", isActive: false, isVisible: true,},
-        {id: 10, face: "valet", isActive: false, isVisible: true,},
-        {id: 11, face: "ten", isActive: false, isVisible: true,},
+        {id: 1, face: `🍕`, isActive: false, isVisible: true,},
+        {id: 2, face: `🍕`, isActive: false, isVisible: true,},
+        {id: 3, face: `💩`, isActive: false, isVisible: true,},
+        {id: 4, face: `💩`, isActive: false, isVisible: true,},
+        {id: 5, face: `👽`, isActive: false, isVisible: true,},
+        {id: 6, face: `👽`, isActive: false, isVisible: true,},
+        {id: 7, face: `🦁`, isActive: false, isVisible: true,},
+        {id: 8, face: `🦁`, isActive: false, isVisible: true,},
+        {id: 9, face: `🐸`, isActive: false, isVisible: true,},
+        {id: 10, face: `🐸`, isActive: false, isVisible: true,},
+        {id: 11, face: `🌝`, isActive: false, isVisible: true,},
+        {id: 12, face: `🌝`, isActive: false, isVisible: true,},
+        {id: 13, face: `🦄`, isActive: false, isVisible: true,},
+        {id: 14, face: `🦄`, isActive: false, isVisible: true,},
+        {id: 15, face: `😈`, isActive: false, isVisible: true,},
+        {id: 16, face: `😈`, isActive: false, isVisible: true,},
       ],
       activeCard: null,
       counter: 0,
@@ -47,6 +55,7 @@ export default {
     }
   },
   mounted() {
+    this.cards = _.shuffle(this.cards)
     this.username = localStorage.getItem('username')
   },
   updated() {
@@ -138,14 +147,18 @@ export default {
 <style scoped lang="scss">
 
 .card__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 100px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  max-width: 560px;
+  width: 100%;
+  margin: 100px auto 0;
+  gap: 20px;
   @media (max-width: 700px) {
     margin-top: 30px;
     gap: 20px;
+    margin-bottom: 50px;
   }
 }
 
@@ -157,14 +170,10 @@ export default {
   font-size: 15px;
 
   @media (max-width: 700px) {
+    display: block;
+    position: relative;
     padding: 1px;
-    top: 80px;
-  }
-}
-
-.title {
-  @media (max-width: 700px) {
-    margin-bottom: 50px;
+    margin: auto;
   }
 }
 

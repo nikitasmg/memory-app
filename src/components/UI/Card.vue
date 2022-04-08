@@ -2,17 +2,26 @@
   <div
     class="card"
     :class="{hidden:!card.isVisible, active:card.isActive}"
-    @click="$emit('getItem')"
+    @click="$emit('click')"
   >
-    <img v-if="card.isActive"
-      class="image"
-      :src="require(`~/assets/images/${card.face}.png`)"
-      alt="card"
+    <transition
+      name="custom-classes-transition"
+      enter-active-class="animate__animated animate__flipInY"
+      leave-active-class="animate__animated animate__flipOutY"
     >
+      <p
+        v-if="card.isActive"
+        class="emoji"
+      >
+        {{ card.face }}
+      </p>
+    </transition>
   </div>
 </template>
 
 <script>
+import 'animate.css';
+
 export default {
   props: {
     card: {
@@ -21,10 +30,12 @@ export default {
         required: true,
       },
       isActive: {
-        type: Boolean
+        type: Boolean,
+        required: true,
       },
       isVisible: {
-        type: Boolean
+        type: Boolean,
+        required: true,
       }
     }
   },
@@ -39,33 +50,44 @@ export default {
   justify-content: center;
   align-items: center;
   color: $black;
-  font-size: 20px;
-  min-height: 230px;
-  padding: 10px;
-  border-radius: 10px;
-  width:calc(20% - 40px);
+  border-radius: 15px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
-  background-color: $white;
-  background-image: url("~/assets/images/back.png");
-  background-size: cover;
-  background-position: center center;
-
+  background: $white;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  transition: all .5s linear;
   @media (max-width: 700px) {
-    min-height: 100px;
-    width:calc(25% - 20px);
+    min-height: auto;
+    width: 100px;
+    height: 100px;
+  }
+  @media (max-width: 400px) {
+    min-height: auto;
+    width: 70px;
+    height: 70px;
   }
 
   &.hidden {
-    display: none;
+    transition: all .5s linear;
+    opacity: 0;
   }
+
   &.active {
     background-image: none;
   }
 }
 
-.image {
-  width: 100%;
-  object-fit: cover;
-
+.emoji {
+  font-size: 100px;
+  @media (max-width: 700px) {
+    font-size: 80px;
+  }
+  @media (max-width: 400px) {
+    font-size: 60px;
+  }
 }
+
+
+
 </style>

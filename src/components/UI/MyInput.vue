@@ -25,8 +25,8 @@ export default {
 .input {
   padding: 10px 10px;
   background-color: transparent;
-  border: 2px solid $brown-minus;
-  color: $yellow;
+  border: 2px solid $black;
+  color: $black;
   font-size: 20px;
   transition: all .1s linear;
 
